@@ -1,0 +1,5 @@
+app.yaml*
+venv*
+*.OLD*
+*.STATIC
+~archive
