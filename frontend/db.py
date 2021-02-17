@@ -22,10 +22,15 @@ def open_connection():
         print(e)
 
 
-def get_songs():
+def content_homepage():
+    html = '<html><body><h1>hello</h1></body</html>'
+    return html
+
+
+def content_songs():
     conn = open_connection()
     with conn.cursor() as cursor:
-        result = cursor.execute('SELECT * FROM songs;')
+        result = cursor.execute("SELECT * FROM songs")
         songs = cursor.fetchall()
         if result > 0:
             got_songs = jsonify(songs)
@@ -34,10 +39,16 @@ def get_songs():
     conn.close()
     return got_songs
 
-def add_songs(song):
+
+def content_songs_rock():
     conn = open_connection()
     with conn.cursor() as cursor:
-        cursor.execute('INSERT INTO songs (title, artist, genre) VALUES(%s, %s, %s)', (song["title"], song["artist"], song["genre"]))
-    conn.commit()
+        result = cursor.execute("SELECT * FROM songs WHERE genre = 'Rock'")
+        songs = cursor.fetchall()
+        if result > 0:
+            got_songs = jsonify(songs)
+        else:
+            got_songs = 'No Songs in DB'
     conn.close()
+    return got_songs
 

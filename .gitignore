@@ -1,5 +1,5 @@
 app.yaml*
 venv*
-*.OLD*
-*.STATIC
 ~archive
+*.sw[op]
+.DS_Store
